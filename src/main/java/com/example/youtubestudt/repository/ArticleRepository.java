@@ -1,4 +1,4 @@
-package com.example.youtubestudt.articlerepository;
+package com.example.youtubestudt.repository;
 
 import com.example.youtubestudt.entity.Article;
 import org.springframework.data.repository.CrudRepository;

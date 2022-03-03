@@ -1,8 +1,11 @@
 package com.example.youtubestudt.controller;
 
-import com.example.youtubestudt.articlerepository.ArticleRepository;
+import com.example.youtubestudt.dto.CommentDto;
+import com.example.youtubestudt.entity.Comment;
+import com.example.youtubestudt.repository.ArticleRepository;
 import com.example.youtubestudt.dto.ArticleForm;
 import com.example.youtubestudt.entity.Article;
+import com.example.youtubestudt.service.CommentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @Slf4j //로깅
@@ -22,6 +24,10 @@ public class ArticleContoroller {
 
     @Autowired
     private ArticleRepository articleRepository;
+
+
+    @Autowired
+    private CommentService commentService;
 
     @GetMapping("/articles/new")
     public String newArticleForm(){
@@ -50,6 +56,9 @@ public class ArticleContoroller {
        // Optional<Article> article = articleRepository.findById(id);
         Article article = articleRepository.findById(id).orElse(null);
         model.addAttribute("article",article);
+        List<CommentDto> commentDtos = commentService.comments(id);
+
+        model.addAttribute("commentsDtos",commentDtos);
 
         return "articles/show";
     }
