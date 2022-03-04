@@ -6,7 +6,7 @@ http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd"
                  version="2.2">
     <named-native-query
             name="Comment.findByNickname"
-            result-class="com.example.youtubestudt.entity.Comment">
+            result-class="com.example.youtubestudy.entity.Comment">
         <query>
             <![CDATA[
 SELECT
